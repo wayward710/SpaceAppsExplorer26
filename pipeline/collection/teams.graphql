@@ -1,0 +1,153 @@
+query Teams($first: Int!, $after: String, $filtering: [Filter!], $q: String) {
+  teams(first: $first, after: $after, filtering: $filtering, q: $q) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+      __typename
+    }
+    totalCount
+    edges {
+      __typename
+      cursor
+      node {
+        __typename
+        id
+        ...CoreTeamFields
+      }
+    }
+    __typename
+  }
+}
+
+fragment CoreTeamFields on TeamPage {
+  id
+  title
+  meta {
+    ...ExpandedPageMetaFields
+    __typename
+  }
+  owner
+  ownerDetails {
+    id
+    username
+    __typename
+  }
+  excerpt
+  project
+  projectDetails {
+    ...CoreProjectFields
+    __typename
+  }
+  projectSubmitted
+  featuredImage {
+    ...CustomImageFields
+    __typename
+  }
+  description
+  desiredSkills
+  languages
+  challenge
+  challengeDetails {
+    id
+    title
+    meta {
+      ...ExpandedPageMetaFields
+      __typename
+    }
+    excerpt
+    __typename
+  }
+  location
+  locationDetails {
+    id
+    title
+    displayName
+    meta {
+      ...ExpandedPageMetaFields
+      __typename
+    }
+    country
+    __typename
+  }
+  event
+  joinEnabled
+  canAcceptMembers
+  memberships {
+    user
+    userDetails {
+      id
+      fullName
+      username
+      country
+      avatar {
+        ...CustomImageFields
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+  nominationBadges
+  awardBadges
+  __typename
+}
+
+fragment ExpandedPageMetaFields on ExpandedPageMeta {
+  type
+  slug
+  firstPublishedAt
+  lastPublishedAt
+  relativeUrl
+  live
+  parent {
+    id
+    __typename
+  }
+  __typename
+}
+
+fragment CoreProjectFields on Project {
+  id
+  name
+  summary
+  demoLink
+  projectLink
+  details
+  solution
+  aiReferences
+  aiToolsUsage
+  dataReferences
+  projectReferences
+  isSubmitted
+  savedAt
+  submittedAt
+  __typename
+}
+
+fragment CustomImageFields on DefaultImage {
+  id
+  meta {
+    type
+    downloadUrl
+    __typename
+  }
+  title
+  alt
+  caption
+  displaySize
+  rendition {
+    ...BaseImageFields
+    __typename
+  }
+  __typename
+}
+
+fragment BaseImageFields on BaseImage {
+  url
+  fullUrl
+  height
+  width
+  __typename
+}

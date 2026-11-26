@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+# Node / Cloudflare
+node_modules/
+.wrangler/
+dist/
+# Local datasets, AI outputs and generated SQL
+*.sqlite
+*.sqlite3
+*.db
+*.db-wal
+*.db-shm
+*.parquet
+*.jsonl
+*.csv
+spaceapps_2026_raw/
+spaceapps_2026_members/
+spaceapps_qwen_production/
+app/export/
+app/sample_export/
+**/*_data.sql
+**/manifest.json
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
